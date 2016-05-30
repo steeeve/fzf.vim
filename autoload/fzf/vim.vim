@@ -534,8 +534,9 @@ endfunction
 
 " ag command suffix, [options]
 function! fzf#vim#ag_raw(command_suffix, ...)
+  let source = 'ag '.get(g:, 'fzf_ag_options', '--nogroup --column --color').' '.a:command_suffix
   return s:fzf(fzf#vim#wrap({
-  \ 'source':  'ag --nogroup --column --color '.a:command_suffix,
+  \ 'source':  source,
   \ 'sink*':    s:function('s:ag_handler'),
   \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Ag> " '.
   \            '--multi --bind alt-a:select-all,alt-d:deselect-all '.
